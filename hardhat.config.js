@@ -5,6 +5,7 @@ require('dotenv').config();
 require("@nomiclabs/hardhat-ethers");
 require("@nomiclabs/hardhat-etherscan");
 require("@nomiclabs/hardhat-waffle");
+require("@openzeppelin/hardhat-upgrades");
 const { mnemonic } = require('./secrets.json');
 const { BSC_API_KEY, API_URL_ROPSTEN, API_URL_RINKEBY, PRIVATE_KEY, API_KEY } = process.env;
 

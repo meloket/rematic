@@ -28,5 +28,8 @@ module.exports = {
          ropsten: API_KEY,
          rinkeby: API_KEY,
       }
+   },
+   mocha: {
+      timeout: 200000
    }
 }

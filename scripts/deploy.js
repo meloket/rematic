@@ -1,22 +1,18 @@
-async function main() {
-    const RaceKingdom = await ethers.getContractFactory("RaceKingdom")
-  
-    // Start deployment, returning a promise that resolves to a contract object
-    const myContract = await RaceKingdom.deploy()
-    await myContract.deployed()
-    console.log("Contract deployed to address:", myContract.address)
-  }
-  
-  main()
-    .then(() => process.exit(0))
-    .catch((error) => {
-      console.error(error)
-      process.exit(1)
-    })
-  
+const { ethers } = require("hardhat")
+const { upgrades } = require("hardhat")
 
-    /*
-    0x1658E87A719679cfA595695958Bd9C4c60f24e74  box(proxy) address
-0x2b16185E8FED153d03D65E421A24CB8667569d19  getImplementationAddress
-0xee77459B26f46a253FFEb51295A65399457e2E76  getAdminAddress
-*/
+async function main() {
+
+  const Rematic = await ethers.getContractFactory("Rematic")
+  console.log("Deploying Rematic...")
+  const rematic = await upgrades.deployProxy(Rematic, { initializer: '__Rematic_init' })
+
+  console.log(rematic.address," rematic(proxy) address")
+  console.log(await upgrades.erc1967.getImplementationAddress(rematic.address)," getImplementationAddress")
+  console.log(await upgrades.erc1967.getAdminAddress(rematic.address)," getAdminAddress")    
+}
+
+main().catch((error) => {
+  console.error(error)
+  process.exitCode = 1
+})

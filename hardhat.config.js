@@ -10,7 +10,7 @@ require("@openzeppelin/hardhat-upgrades");
 const { API_URL_ROPSTEN, API_URL_RINKEBY, PRIVATE_KEY, API_KEY } = process.env;
 
 module.exports = {
-   solidity: "0.8.1",
+   solidity: "0.8.13",
    defaultNetwork: "rinkeby",
    networks: {
       hardhat: {},

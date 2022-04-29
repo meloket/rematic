@@ -5,7 +5,7 @@ async function main() {
 
   const Rematic = await ethers.getContractFactory("Rematic")
   console.log("Deploying Rematic...")
-  const rematic = await upgrades.deployProxy(Rematic)
+  const rematic = await upgrades.deployProxy(Rematic, {initializer: '__Rematic_init'})
 
   console.log(rematic.address," rematic(proxy) address")
   console.log(await upgrades.erc1967.getImplementationAddress(rematic.address)," getImplementationAddress")
@@ -19,7 +19,7 @@ main().catch((error) => {
 
 /*
 rinkeby:
-0x62Fa66829c377B8d77fBd520d88d18106b591eac  rematic(proxy) address
+0xD4DFC916C56cE28F17AE5F49BF07205524a7446c  rematic(proxy) address
 0xEE4f72eA4Fab5AE1997B8BaaB9Cd6A055f9e1bc0  getImplementationAddress
 0xee77459B26f46a253FFEb51295A65399457e2E76  getAdminAddress
 */

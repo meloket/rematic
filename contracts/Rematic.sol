@@ -820,7 +820,7 @@ contract Rematic is ERC20Upgradeable, OwnableUpgradeable {
     
     address private _newOwner;
 
-    function __Rematic_init() internal onlyInitializing {
+    function __Rematic_init() external initializer {
         __Rematic_init_unchained();
     }
 
@@ -1669,7 +1669,7 @@ contract Token1DividendTracker is DividendPayingToken {
  
     event Claim(address indexed account, uint256 amount, bool indexed automatic);
 
-    function __Token1DividendTracker_init() internal onlyInitializing {
+    function __Token1DividendTracker_init() internal initializer {
         __Token1DividendTracker_init_unchained();
     }
 
@@ -1901,7 +1901,7 @@ contract Token2DividendTracker is DividendPayingToken {
  
     event Claim(address indexed account, uint256 amount, bool indexed automatic);
 
-    function __Token2DividendTracker_init() internal onlyInitializing {
+    function __Token2DividendTracker_init() internal initializer {
         __Token2DividendTracker_init_unchained();
     }
 

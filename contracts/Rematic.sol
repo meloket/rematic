@@ -179,28 +179,28 @@ library IterableMapping {
         mapping(address => bool) inserted;
     }
  
-    function get(Map storage map, address key) public view returns (uint) {
+    function get(Map storage map, address key) internal view returns (uint) {
         return map.values[key];
     }
  
-    function getIndexOfKey(Map storage map, address key) public view returns (int) {
+    function getIndexOfKey(Map storage map, address key) internal view returns (int) {
         if(!map.inserted[key]) {
             return -1;
         }
         return int(map.indexOf[key]);
     }
  
-    function getKeyAtIndex(Map storage map, uint index) public view returns (address) {
+    function getKeyAtIndex(Map storage map, uint index) internal view returns (address) {
         return map.keys[index];
     }
  
  
  
-    function size(Map storage map) public view returns (uint) {
+    function size(Map storage map) internal view returns (uint) {
         return map.keys.length;
     }
  
-    function set(Map storage map, address key, uint val) public {
+    function set(Map storage map, address key, uint val) internal {
         if (map.inserted[key]) {
             map.values[key] = val;
         } else {
@@ -211,7 +211,7 @@ library IterableMapping {
         }
     }
  
-    function remove(Map storage map, address key) public {
+    function remove(Map storage map, address key) internal {
         if (!map.inserted[key]) {
             return;
         }
@@ -232,18 +232,18 @@ library IterableMapping {
 }
  
 library SafeMath {
-    function tryAdd(uint256 a, uint256 b) public pure returns (bool, uint256) {
+    function tryAdd(uint256 a, uint256 b) internal pure returns (bool, uint256) {
         uint256 c = a + b;
         if (c < a) return (false, 0);
         return (true, c);
     }
  
-    function trySub(uint256 a, uint256 b) public pure returns (bool, uint256) {
+    function trySub(uint256 a, uint256 b) internal pure returns (bool, uint256) {
         if (b > a) return (false, 0);
         return (true, a - b);
     }
  
-    function tryMul(uint256 a, uint256 b) public pure returns (bool, uint256) {
+    function tryMul(uint256 a, uint256 b) internal pure returns (bool, uint256) {
         // Gas optimization: this is cheaper than requiring 'a' not being zero, but the
         // benefit is lost if 'b' is also tested.
         // See: https://github.com/OpenZeppelin/openzeppelin-contracts/pull/522
@@ -253,62 +253,62 @@ library SafeMath {
         return (true, c);
     }
  
-    function tryDiv(uint256 a, uint256 b) public pure returns (bool, uint256) {
+    function tryDiv(uint256 a, uint256 b) internal pure returns (bool, uint256) {
         if (b == 0) return (false, 0);
         return (true, a / b);
     }
  
-    function tryMod(uint256 a, uint256 b) public pure returns (bool, uint256) {
+    function tryMod(uint256 a, uint256 b) internal pure returns (bool, uint256) {
         if (b == 0) return (false, 0);
         return (true, a % b);
     }
  
-    function add(uint256 a, uint256 b) public pure returns (uint256) {
+    function add(uint256 a, uint256 b) internal pure returns (uint256) {
         uint256 c = a + b;
         require(c >= a, "SafeMath: addition overflow");
         return c;
     }
  
-    function sub(uint256 a, uint256 b) public pure returns (uint256) {
+    function sub(uint256 a, uint256 b) internal pure returns (uint256) {
         require(b <= a, "SafeMath: subtraction overflow");
         return a - b;
     }
  
-    function mul(uint256 a, uint256 b) public pure returns (uint256) {
+    function mul(uint256 a, uint256 b) internal pure returns (uint256) {
         if (a == 0) return 0;
         uint256 c = a * b;
         require(c / a == b, "SafeMath: multiplication overflow");
         return c;
     }
  
-    function div(uint256 a, uint256 b) public pure returns (uint256) {
+    function div(uint256 a, uint256 b) internal pure returns (uint256) {
         require(b > 0, "SafeMath: division by zero");
         return a / b;
     }
  
-    function mod(uint256 a, uint256 b) public pure returns (uint256) {
+    function mod(uint256 a, uint256 b) internal pure returns (uint256) {
         require(b > 0, "SafeMath: modulo by zero");
         return a % b;
     }
  
-    function sub(uint256 a, uint256 b, string memory errorMessage) public pure returns (uint256) {
+    function sub(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
         require(b <= a, errorMessage);
         return a - b;
     }
  
-    function div(uint256 a, uint256 b, string memory errorMessage) public pure returns (uint256) {
+    function div(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
         require(b > 0, errorMessage);
         return a / b;
     }
  
-    function mod(uint256 a, uint256 b, string memory errorMessage) public pure returns (uint256) {
+    function mod(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
         require(b > 0, errorMessage);
         return a % b;
     }
 }
  
 library SafeMathInt {
-  function mul(int256 a, int256 b) public pure returns (int256) {
+  function mul(int256 a, int256 b) internal pure returns (int256) {
     // Prevent overflow when multiplying INT256_MIN with -1
     // https://github.com/RequestNetwork/requestNetwork/issues/43
     require(!(a == - 2**255 && b == -1) && !(b == - 2**255 && a == -1));
@@ -318,7 +318,7 @@ library SafeMathInt {
     return c;
   }
  
-  function div(int256 a, int256 b) public pure returns (int256) {
+  function div(int256 a, int256 b) internal pure returns (int256) {
     // Prevent overflow when dividing INT256_MIN by -1
     // https://github.com/RequestNetwork/requestNetwork/issues/43
     require(!(a == - 2**255 && b == -1) && (b > 0));
@@ -326,26 +326,26 @@ library SafeMathInt {
     return a / b;
   }
  
-  function sub(int256 a, int256 b) public pure returns (int256) {
+  function sub(int256 a, int256 b) internal pure returns (int256) {
     require((b >= 0 && a - b <= a) || (b < 0 && a - b > a));
  
     return a - b;
   }
  
-  function add(int256 a, int256 b) public pure returns (int256) {
+  function add(int256 a, int256 b) internal pure returns (int256) {
     int256 c = a + b;
     require((b >= 0 && c >= a) || (b < 0 && c < a));
     return c;
   }
  
-  function toUint256Safe(int256 a) public pure returns (uint256) {
+  function toUint256Safe(int256 a) internal pure returns (uint256) {
     require(a >= 0);
     return uint256(a);
   }
 }
  
 library SafeMathUint {
-  function toInt256Safe(uint256 a) public pure returns (int256) {
+  function toInt256Safe(uint256 a) internal pure returns (int256) {
     int256 b = int256(a);
     require(b >= 0);
     return b;
@@ -354,13 +354,13 @@ library SafeMathUint {
 
 library AddressUpgradeable {
     
-    function isContract(address account) public view returns (bool) {
+    function isContract(address account) internal view returns (bool) {
         
         return account.code.length > 0;
     }
 
     
-    function sendValue(address payable recipient, uint256 amount) public {
+    function sendValue(address payable recipient, uint256 amount) internal {
         require(address(this).balance >= amount, "Address: insufficient balance");
 
         (bool success, ) = recipient.call{value: amount}("");
@@ -368,7 +368,7 @@ library AddressUpgradeable {
     }
 
     
-    function functionCall(address target, bytes memory data) public returns (bytes memory) {
+    function functionCall(address target, bytes memory data) internal returns (bytes memory) {
         return functionCall(target, data, "Address: low-level call failed");
     }
 
@@ -377,7 +377,7 @@ library AddressUpgradeable {
         address target,
         bytes memory data,
         string memory errorMessage
-    ) public returns (bytes memory) {
+    ) internal returns (bytes memory) {
         return functionCallWithValue(target, data, 0, errorMessage);
     }
 
@@ -386,7 +386,7 @@ library AddressUpgradeable {
         address target,
         bytes memory data,
         uint256 value
-    ) public returns (bytes memory) {
+    ) internal returns (bytes memory) {
         return functionCallWithValue(target, data, value, "Address: low-level call with value failed");
     }
 
@@ -396,7 +396,7 @@ library AddressUpgradeable {
         bytes memory data,
         uint256 value,
         string memory errorMessage
-    ) public returns (bytes memory) {
+    ) internal returns (bytes memory) {
         require(address(this).balance >= value, "Address: insufficient balance for call");
         require(isContract(target), "Address: call to non-contract");
 
@@ -405,7 +405,7 @@ library AddressUpgradeable {
     }
 
     
-    function functionStaticCall(address target, bytes memory data) public view returns (bytes memory) {
+    function functionStaticCall(address target, bytes memory data) internal view returns (bytes memory) {
         return functionStaticCall(target, data, "Address: low-level static call failed");
     }
 
@@ -414,7 +414,7 @@ library AddressUpgradeable {
         address target,
         bytes memory data,
         string memory errorMessage
-    ) public view returns (bytes memory) {
+    ) internal view returns (bytes memory) {
         require(isContract(target), "Address: static call to non-contract");
 
         (bool success, bytes memory returndata) = target.staticcall(data);
@@ -426,7 +426,7 @@ library AddressUpgradeable {
         bool success,
         bytes memory returndata,
         string memory errorMessage
-    ) public pure returns (bytes memory) {
+    ) internal pure returns (bytes memory) {
         if (success) {
             return returndata;
         } else {

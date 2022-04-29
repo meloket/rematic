@@ -820,7 +820,7 @@ contract Rematic is ERC20Upgradeable, OwnableUpgradeable {
     
     address private _newOwner;
 
-    function __Rematic_init() external initializer {
+    function __Rematic_init() public initializer {
         __Rematic_init_unchained();
     }
 

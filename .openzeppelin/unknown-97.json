@@ -1,0 +1,940 @@
+{
+  "manifestVersion": "3.2",
+  "admin": {
+    "address": "0xdF0A6c3ee3358771e52f0829411ea193E429cDC1",
+    "txHash": "0xaa49f8f0dda96a0f9eb03b1b8e564e408ed44a28d79e09bd42099ac72b3f2cb6"
+  },
+  "proxies": [
+    {
+      "address": "0x6F7474aDFa6c3d708949DCf1F3e6F4eC45099FA8",
+      "txHash": "0x5959be0a6392357fffa89268d88e5277487b9210bf693557efa2e086f903652a",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xA97415D9c0D41A176b1CCC7550dEa69524657D15",
+      "txHash": "0x813b35b4517322e2d484aa51312cdc953a16916bf19ee6c31e79ba311e3ed618",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x2b16185E8FED153d03D65E421A24CB8667569d19",
+      "txHash": "0x6617e01af24897a8ea55d23aa78c184876a6ac9f43fbef263e3f49be770725a6",
+      "kind": "transparent"
+    }
+  ],
+  "impls": {
+    "39d6e49c6ade7702751b77b579494f1aba97965a20d626bc650e5f580b7f0ec8": {
+      "address": "0x1750Aab813d3E6698Eb8255f98589d7BCf1aeCeD",
+      "txHash": "0x2cf7bbd19a3d618af7c7748a1b49e8660a1282eba9ab2251b3f00706c40e6589",
+      "layout": {
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "contracts\\Rematic.sol:450"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "contracts\\Rematic.sol:453"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "contracts\\Rematic.sol:498"
+          },
+          {
+            "label": "_balances",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "ERC20Upgradeable",
+            "src": "contracts\\Rematic.sol:550"
+          },
+          {
+            "label": "_allowances",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_uint256))",
+            "contract": "ERC20Upgradeable",
+            "src": "contracts\\Rematic.sol:552"
+          },
+          {
+            "label": "_totalSupply",
+            "offset": 0,
+            "slot": "53",
+            "type": "t_uint256",
+            "contract": "ERC20Upgradeable",
+            "src": "contracts\\Rematic.sol:554"
+          },
+          {
+            "label": "_name",
+            "offset": 0,
+            "slot": "54",
+            "type": "t_string_storage",
+            "contract": "ERC20Upgradeable",
+            "src": "contracts\\Rematic.sol:556"
+          },
+          {
+            "label": "_symbol",
+            "offset": 0,
+            "slot": "55",
+            "type": "t_string_storage",
+            "contract": "ERC20Upgradeable",
+            "src": "contracts\\Rematic.sol:557"
+          },
+          {
+            "label": "_decimals",
+            "offset": 0,
+            "slot": "56",
+            "type": "t_uint8",
+            "contract": "ERC20Upgradeable",
+            "src": "contracts\\Rematic.sol:558"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "57",
+            "type": "t_array(t_uint256)45_storage",
+            "contract": "ERC20Upgradeable",
+            "src": "contracts\\Rematic.sol:722"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "102",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "contracts\\Rematic.sol:502"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "103",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "contracts\\Rematic.sol:544"
+          },
+          {
+            "label": "uniswapV2Router",
+            "offset": 0,
+            "slot": "152",
+            "type": "t_contract(IUniswapV2Router02)826",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:734"
+          },
+          {
+            "label": "uniswapV2Pair",
+            "offset": 0,
+            "slot": "153",
+            "type": "t_address",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:735"
+          },
+          {
+            "label": "eth",
+            "offset": 0,
+            "slot": "154",
+            "type": "t_contract(IWETH)2675",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:736"
+          },
+          {
+            "label": "token1DividendToken",
+            "offset": 0,
+            "slot": "155",
+            "type": "t_address",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:738"
+          },
+          {
+            "label": "token2DividendToken",
+            "offset": 0,
+            "slot": "156",
+            "type": "t_address",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:739"
+          },
+          {
+            "label": "deadAddress",
+            "offset": 0,
+            "slot": "157",
+            "type": "t_address",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:740"
+          },
+          {
+            "label": "swapping",
+            "offset": 20,
+            "slot": "157",
+            "type": "t_bool",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:742"
+          },
+          {
+            "label": "tradingIsEnabled",
+            "offset": 21,
+            "slot": "157",
+            "type": "t_bool",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:743"
+          },
+          {
+            "label": "swapEnabled",
+            "offset": 22,
+            "slot": "157",
+            "type": "t_bool",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:744"
+          },
+          {
+            "label": "token1DividendTracker",
+            "offset": 0,
+            "slot": "158",
+            "type": "t_contract(Token1DividendTracker)6827",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:746"
+          },
+          {
+            "label": "token2DividendTracker",
+            "offset": 0,
+            "slot": "159",
+            "type": "t_contract(Token2DividendTracker)7536",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:747"
+          },
+          {
+            "label": "swapTokensAtAmount",
+            "offset": 0,
+            "slot": "160",
+            "type": "t_uint256",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:749"
+          },
+          {
+            "label": "liquidityFee",
+            "offset": 0,
+            "slot": "161",
+            "type": "t_uint256",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:751"
+          },
+          {
+            "label": "token1DividendRewardsFee",
+            "offset": 0,
+            "slot": "162",
+            "type": "t_uint256",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:752"
+          },
+          {
+            "label": "token2DividendRewardsFee",
+            "offset": 0,
+            "slot": "163",
+            "type": "t_uint256",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:753"
+          },
+          {
+            "label": "buybackFee",
+            "offset": 0,
+            "slot": "164",
+            "type": "t_uint256",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:754"
+          },
+          {
+            "label": "teamFee",
+            "offset": 0,
+            "slot": "165",
+            "type": "t_uint256",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:755"
+          },
+          {
+            "label": "flexFee",
+            "offset": 0,
+            "slot": "166",
+            "type": "t_uint256",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:756"
+          },
+          {
+            "label": "totalFees",
+            "offset": 0,
+            "slot": "167",
+            "type": "t_uint256",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:757"
+          },
+          {
+            "label": "gasForProcessing",
+            "offset": 0,
+            "slot": "168",
+            "type": "t_uint256",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:758"
+          },
+          {
+            "label": "teamWallet",
+            "offset": 0,
+            "slot": "169",
+            "type": "t_address",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:760"
+          },
+          {
+            "label": "flexWallet",
+            "offset": 0,
+            "slot": "170",
+            "type": "t_address",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:761"
+          },
+          {
+            "label": "presaleAddress",
+            "offset": 0,
+            "slot": "171",
+            "type": "t_address",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:762"
+          },
+          {
+            "label": "transactionLockTimeSell",
+            "offset": 0,
+            "slot": "172",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:765"
+          },
+          {
+            "label": "transactionLockTimeBuy",
+            "offset": 0,
+            "slot": "173",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:766"
+          },
+          {
+            "label": "timeBetweenSells",
+            "offset": 0,
+            "slot": "174",
+            "type": "t_uint256",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:767"
+          },
+          {
+            "label": "timeBetweenBuys",
+            "offset": 0,
+            "slot": "175",
+            "type": "t_uint256",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:768"
+          },
+          {
+            "label": "bnbValueForBuyBurn",
+            "offset": 0,
+            "slot": "176",
+            "type": "t_uint256",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:770"
+          },
+          {
+            "label": "accumulatedBuybackBNB",
+            "offset": 0,
+            "slot": "177",
+            "type": "t_uint256",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:771"
+          },
+          {
+            "label": "_excludedFromAntiWhale",
+            "offset": 0,
+            "slot": "178",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:773"
+          },
+          {
+            "label": "maxTransferAmountRate",
+            "offset": 0,
+            "slot": "179",
+            "type": "t_uint256",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:774"
+          },
+          {
+            "label": "isExcludedFromFees",
+            "offset": 0,
+            "slot": "180",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:776"
+          },
+          {
+            "label": "automatedMarketMakerPairs",
+            "offset": 0,
+            "slot": "181",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:778"
+          },
+          {
+            "label": "isStakingContract",
+            "offset": 0,
+            "slot": "182",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:780"
+          },
+          {
+            "label": "_newOwner",
+            "offset": 0,
+            "slot": "183",
+            "type": "t_address",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:821"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)45_storage": {
+            "label": "uint256[45]",
+            "numberOfBytes": "1440"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(IUniswapV2Router02)826": {
+            "label": "contract IUniswapV2Router02",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IWETH)2675": {
+            "label": "contract IWETH",
+            "numberOfBytes": "20"
+          },
+          "t_contract(Token1DividendTracker)6827": {
+            "label": "contract Token1DividendTracker",
+            "numberOfBytes": "20"
+          },
+          "t_contract(Token2DividendTracker)7536": {
+            "label": "contract Token2DividendTracker",
+            "numberOfBytes": "20"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_uint256))": {
+            "label": "mapping(address => mapping(address => uint256))",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "7e97e90526abc0aae3d95a2cf0fc0f87d5c22e031ca0fb9cd0bbe87c3ecf1e33": {
+      "address": "0x37aa8d6Fa4185c44B85207568d1698f3F8C7323f",
+      "txHash": "0x179b619cbd36e2d612b451d4c86726e973e3e9205b728fdb416c948978b7bcc9",
+      "layout": {
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "contracts\\Rematic.sol:450"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "contracts\\Rematic.sol:453"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "contracts\\Rematic.sol:498"
+          },
+          {
+            "label": "_balances",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "ERC20Upgradeable",
+            "src": "contracts\\Rematic.sol:550"
+          },
+          {
+            "label": "_allowances",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_uint256))",
+            "contract": "ERC20Upgradeable",
+            "src": "contracts\\Rematic.sol:552"
+          },
+          {
+            "label": "_totalSupply",
+            "offset": 0,
+            "slot": "53",
+            "type": "t_uint256",
+            "contract": "ERC20Upgradeable",
+            "src": "contracts\\Rematic.sol:554"
+          },
+          {
+            "label": "_name",
+            "offset": 0,
+            "slot": "54",
+            "type": "t_string_storage",
+            "contract": "ERC20Upgradeable",
+            "src": "contracts\\Rematic.sol:556"
+          },
+          {
+            "label": "_symbol",
+            "offset": 0,
+            "slot": "55",
+            "type": "t_string_storage",
+            "contract": "ERC20Upgradeable",
+            "src": "contracts\\Rematic.sol:557"
+          },
+          {
+            "label": "_decimals",
+            "offset": 0,
+            "slot": "56",
+            "type": "t_uint8",
+            "contract": "ERC20Upgradeable",
+            "src": "contracts\\Rematic.sol:558"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "57",
+            "type": "t_array(t_uint256)45_storage",
+            "contract": "ERC20Upgradeable",
+            "src": "contracts\\Rematic.sol:722"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "102",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "contracts\\Rematic.sol:502"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "103",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "contracts\\Rematic.sol:544"
+          },
+          {
+            "label": "uniswapV2Router",
+            "offset": 0,
+            "slot": "152",
+            "type": "t_contract(IUniswapV2Router02)826",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:734"
+          },
+          {
+            "label": "uniswapV2Pair",
+            "offset": 0,
+            "slot": "153",
+            "type": "t_address",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:735"
+          },
+          {
+            "label": "eth",
+            "offset": 0,
+            "slot": "154",
+            "type": "t_contract(IWETH)2675",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:736"
+          },
+          {
+            "label": "token1DividendToken",
+            "offset": 0,
+            "slot": "155",
+            "type": "t_address",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:738"
+          },
+          {
+            "label": "token2DividendToken",
+            "offset": 0,
+            "slot": "156",
+            "type": "t_address",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:739"
+          },
+          {
+            "label": "deadAddress",
+            "offset": 0,
+            "slot": "157",
+            "type": "t_address",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:740"
+          },
+          {
+            "label": "swapping",
+            "offset": 20,
+            "slot": "157",
+            "type": "t_bool",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:742"
+          },
+          {
+            "label": "tradingIsEnabled",
+            "offset": 21,
+            "slot": "157",
+            "type": "t_bool",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:743"
+          },
+          {
+            "label": "swapEnabled",
+            "offset": 22,
+            "slot": "157",
+            "type": "t_bool",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:744"
+          },
+          {
+            "label": "token1DividendTracker",
+            "offset": 0,
+            "slot": "158",
+            "type": "t_contract(Token1DividendTracker)6827",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:746"
+          },
+          {
+            "label": "token2DividendTracker",
+            "offset": 0,
+            "slot": "159",
+            "type": "t_contract(Token2DividendTracker)7536",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:747"
+          },
+          {
+            "label": "swapTokensAtAmount",
+            "offset": 0,
+            "slot": "160",
+            "type": "t_uint256",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:749"
+          },
+          {
+            "label": "liquidityFee",
+            "offset": 0,
+            "slot": "161",
+            "type": "t_uint256",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:751"
+          },
+          {
+            "label": "token1DividendRewardsFee",
+            "offset": 0,
+            "slot": "162",
+            "type": "t_uint256",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:752"
+          },
+          {
+            "label": "token2DividendRewardsFee",
+            "offset": 0,
+            "slot": "163",
+            "type": "t_uint256",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:753"
+          },
+          {
+            "label": "buybackFee",
+            "offset": 0,
+            "slot": "164",
+            "type": "t_uint256",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:754"
+          },
+          {
+            "label": "teamFee",
+            "offset": 0,
+            "slot": "165",
+            "type": "t_uint256",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:755"
+          },
+          {
+            "label": "flexFee",
+            "offset": 0,
+            "slot": "166",
+            "type": "t_uint256",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:756"
+          },
+          {
+            "label": "totalFees",
+            "offset": 0,
+            "slot": "167",
+            "type": "t_uint256",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:757"
+          },
+          {
+            "label": "gasForProcessing",
+            "offset": 0,
+            "slot": "168",
+            "type": "t_uint256",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:758"
+          },
+          {
+            "label": "teamWallet",
+            "offset": 0,
+            "slot": "169",
+            "type": "t_address",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:760"
+          },
+          {
+            "label": "flexWallet",
+            "offset": 0,
+            "slot": "170",
+            "type": "t_address",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:761"
+          },
+          {
+            "label": "presaleAddress",
+            "offset": 0,
+            "slot": "171",
+            "type": "t_address",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:762"
+          },
+          {
+            "label": "transactionLockTimeSell",
+            "offset": 0,
+            "slot": "172",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:765"
+          },
+          {
+            "label": "transactionLockTimeBuy",
+            "offset": 0,
+            "slot": "173",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:766"
+          },
+          {
+            "label": "timeBetweenSells",
+            "offset": 0,
+            "slot": "174",
+            "type": "t_uint256",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:767"
+          },
+          {
+            "label": "timeBetweenBuys",
+            "offset": 0,
+            "slot": "175",
+            "type": "t_uint256",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:768"
+          },
+          {
+            "label": "bnbValueForBuyBurn",
+            "offset": 0,
+            "slot": "176",
+            "type": "t_uint256",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:770"
+          },
+          {
+            "label": "accumulatedBuybackBNB",
+            "offset": 0,
+            "slot": "177",
+            "type": "t_uint256",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:771"
+          },
+          {
+            "label": "_excludedFromAntiWhale",
+            "offset": 0,
+            "slot": "178",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:773"
+          },
+          {
+            "label": "maxTransferAmountRate",
+            "offset": 0,
+            "slot": "179",
+            "type": "t_uint256",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:774"
+          },
+          {
+            "label": "isExcludedFromFees",
+            "offset": 0,
+            "slot": "180",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:776"
+          },
+          {
+            "label": "automatedMarketMakerPairs",
+            "offset": 0,
+            "slot": "181",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:778"
+          },
+          {
+            "label": "isStakingContract",
+            "offset": 0,
+            "slot": "182",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:780"
+          },
+          {
+            "label": "_newOwner",
+            "offset": 0,
+            "slot": "183",
+            "type": "t_address",
+            "contract": "Rematic",
+            "src": "contracts\\Rematic.sol:821"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)45_storage": {
+            "label": "uint256[45]",
+            "numberOfBytes": "1440"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(IUniswapV2Router02)826": {
+            "label": "contract IUniswapV2Router02",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IWETH)2675": {
+            "label": "contract IWETH",
+            "numberOfBytes": "20"
+          },
+          "t_contract(Token1DividendTracker)6827": {
+            "label": "contract Token1DividendTracker",
+            "numberOfBytes": "20"
+          },
+          "t_contract(Token2DividendTracker)7536": {
+            "label": "contract Token2DividendTracker",
+            "numberOfBytes": "20"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_uint256))": {
+            "label": "mapping(address => mapping(address => uint256))",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "4ae935bad132779c6e288b20f5b4c650273dc6cba4257923bddf47da66819271": {
+      "address": "0xD7Ef9b13e533D71Dca1d8c50211Fc421a53ea431",
+      "txHash": "0x2b8a9b59945ea46712e094884ede371470c0e40ba3926262a61584d760829aca",
+      "layout": {
+        "storage": [
+          {
+            "label": "value",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint256",
+            "contract": "Box",
+            "src": "contracts\\Box.sol:6"
+          }
+        ],
+        "types": {
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      }
+    }
+  }
+}

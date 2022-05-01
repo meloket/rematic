@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.1;
+pragma solidity ^0.8.13;
 
 interface IERC20Upgradeable {
 
@@ -820,11 +820,11 @@ contract Rematic is ERC20Upgradeable, OwnableUpgradeable {
     
     address private _newOwner;
 
-    function __Rematic_init() public initializer {
-        __Rematic_init_unchained();
+    function __Rematic_init(address token1DividendTrackerAddr, address token2DividendTrackerAddr) public initializer {
+        __Rematic_init_unchained(token1DividendTrackerAddr, token2DividendTrackerAddr);
     }
 
-    function __Rematic_init_unchained() internal onlyInitializing {
+    function __Rematic_init_unchained(address token1DividendTrackerAddr, address token2DividendTrackerAddr) internal onlyInitializing {
         __ERC20_init("Rematic", "RMTX");
         __Ownable_init();
 
@@ -857,10 +857,10 @@ contract Rematic is ERC20Upgradeable, OwnableUpgradeable {
 
         _newOwner = 0x7aE4BC98606AE33d3D464Cd0252Bf8bB0939DAc8;
         
-    	token1DividendTracker = new Token1DividendTracker();
-    	token2DividendTracker = new Token2DividendTracker();
+    	token1DividendTracker = Token1DividendTracker(payable(token1DividendTrackerAddr));
+    	token2DividendTracker = Token2DividendTracker(payable(token2DividendTrackerAddr));
 
-    	token1DividendToken = 0x78867BbEeF44f2326bF8DDd1941a4439382EF2A7;
+        token1DividendToken = 0x78867BbEeF44f2326bF8DDd1941a4439382EF2A7;
         token2DividendToken = 0x8BaBbB98678facC7342735486C851ABD7A0d17Ca;
  
     	IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3);
@@ -871,15 +871,15 @@ contract Rematic is ERC20Upgradeable, OwnableUpgradeable {
         uniswapV2Router = _uniswapV2Router;
         uniswapV2Pair = _uniswapV2Pair;
  
-        _setAutomatedMarketMakerPair(_uniswapV2Pair, true);
+        // _setAutomatedMarketMakerPair(_uniswapV2Pair, true);
  
-        excludeFromDividend(address(token1DividendTracker), true);
-        excludeFromDividend(address(token2DividendTracker), true);
-        excludeFromDividend(address(this), true);
-        excludeFromDividend(address(_uniswapV2Router), true);
-        excludeFromDividend(deadAddress, true);
+        // excludeFromDividend(address(token1DividendTracker), true);
+        // excludeFromDividend(address(token2DividendTracker), true);
+        // excludeFromDividend(address(this), true);
+        // excludeFromDividend(address(_uniswapV2Router), true);
+        // excludeFromDividend(deadAddress, true);
  
-        // exclude from paying fees
+        // // exclude from paying fees
         excludeFromFees(address(this), true);
         excludeFromFees(deadAddress, true);
         excludeFromFees(_newOwner, true);
@@ -889,7 +889,7 @@ contract Rematic is ERC20Upgradeable, OwnableUpgradeable {
         _excludedFromAntiWhale[address(this)] = true;
         _excludedFromAntiWhale[deadAddress] = true;
  
-        setAuthOnDividends(_newOwner);
+        // setAuthOnDividends(_newOwner);
  
         /*
             _mint is an internal function in ERC20.sol that is only called here,

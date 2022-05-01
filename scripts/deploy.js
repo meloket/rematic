@@ -2,9 +2,24 @@ const { ethers } = require("hardhat")
 const { upgrades } = require("hardhat")
 
 async function main() {
+  const Token1DividendTracker = await ethers.getContractFactory("Token1DividendTracker")
+  
+  // Start deployment, returning a promise that resolves to a contract object
+  const token1DividendTracker = await Token1DividendTracker.deploy()
+  await token1DividendTracker.deployed()
+  console.log("Contract deployed to address:", token1DividendTracker.address)
+
+  const Token2DividendTracker = await ethers.getContractFactory("Token2DividendTracker")
+  
+  // Start deployment, returning a promise that resolves to a contract object
+  const token2DividendTracker = await Token2DividendTracker.deploy()
+  await token2DividendTracker.deployed()
+  console.log("Contract deployed to address:", token2DividendTracker.address)
+
+
   const Rematic = await ethers.getContractFactory("Rematic")
   console.log("Deploying Rematic...")
-  const rematic = await upgrades.deployProxy(Rematic, {initializer: '__Rematic_init'})
+  const rematic = await upgrades.deployProxy(Rematic, [token1DividendTracker.address, token2DividendTracker.address], {initializer: '__Rematic_init'})
 
   console.log(rematic.address," rematic(proxy) address")
   console.log(await upgrades.erc1967.getImplementationAddress(rematic.address)," getImplementationAddress")

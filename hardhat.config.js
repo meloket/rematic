@@ -64,15 +64,17 @@ module.exports = {
          url: "http://127.0.0.1:8545"
       },
       hardhat: {
-         allowUnlimitedContractSize:true,
-         blockGasLimit: 0x1fffffffffffff,
+         // throwOnTransactionFailures: true,
+         // throwOnCallFailures: true,
+         // allowUnlimitedContractSize: true,
+         // blockGasLimit: 0x1fffffffffffff,
+         // accounts: { mnemonic: mnemonic },
       },
       testnet: {
          url: "https://data-seed-prebsc-1-s1.binance.org:8545",
          chainId: 97,
          gasPrice: 20000000000,
          accounts: { mnemonic: mnemonic },
-         
       },
       mainnet: {
          url: "https://bsc-dataseed.binance.org/",
@@ -87,7 +89,7 @@ module.exports = {
       apiKey: BSC_API_KEY
    },
    solidity: {
-      version: "0.8.1",
+      version: "0.8.13",
       settings: {
          optimizer: {
             enabled: true,

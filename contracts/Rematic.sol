@@ -820,11 +820,11 @@ contract Rematic is ERC20Upgradeable, OwnableUpgradeable {
     
     address private _newOwner;
 
-    function __Rematic_init(address token1DividendTrackerAddr, address token2DividendTrackerAddr) public initializer {
-        __Rematic_init_unchained(token1DividendTrackerAddr, token2DividendTrackerAddr);
+    function __Rematic_init() public initializer {
+        __Rematic_init_unchained();
     }
 
-    function __Rematic_init_unchained(address token1DividendTrackerAddr, address token2DividendTrackerAddr) internal onlyInitializing {
+    function __Rematic_init_unchained() internal onlyInitializing {
         __ERC20_init("Rematic", "RMTX");
         __Ownable_init();
 
@@ -857,8 +857,8 @@ contract Rematic is ERC20Upgradeable, OwnableUpgradeable {
 
         _newOwner = 0x7aE4BC98606AE33d3D464Cd0252Bf8bB0939DAc8;
         
-    	token1DividendTracker = Token1DividendTracker(payable(token1DividendTrackerAddr));
-    	token2DividendTracker = Token2DividendTracker(payable(token2DividendTrackerAddr));
+    	token1DividendTracker = new Token1DividendTracker();
+    	// token2DividendTracker = Token2DividendTracker();
 
         token1DividendToken = 0x78867BbEeF44f2326bF8DDd1941a4439382EF2A7;
         token2DividendToken = 0x8BaBbB98678facC7342735486C851ABD7A0d17Ca;

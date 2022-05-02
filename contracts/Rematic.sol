@@ -820,11 +820,11 @@ contract Rematic is ERC20Upgradeable, OwnableUpgradeable {
     
     address private _newOwner;
 
-    function __Rematic_init() public initializer {
-        __Rematic_init_unchained();
+    function __Rematic_init(address token1DividendTrackerAddr, address token2DividendTrackerAddr) public initializer {
+        __Rematic_init_unchained(token1DividendTrackerAddr, token2DividendTrackerAddr);
     }
 
-    function __Rematic_init_unchained() internal onlyInitializing {
+    function __Rematic_init_unchained(address token1DividendTrackerAddr, address token2DividendTrackerAddr) internal onlyInitializing {
         __ERC20_init("Rematic", "RMTX");
         __Ownable_init();
 
@@ -857,8 +857,10 @@ contract Rematic is ERC20Upgradeable, OwnableUpgradeable {
 
         _newOwner = 0x7aE4BC98606AE33d3D464Cd0252Bf8bB0939DAc8;
         
-    	token1DividendTracker = new Token1DividendTracker();
-    	// token2DividendTracker = Token2DividendTracker();
+    	token1DividendTracker = Token1DividendTracker(payable(token1DividendTrackerAddr));
+    	token2DividendTracker = Token2DividendTracker(payable(token2DividendTrackerAddr));
+        // require(token1DividendTracker.owner() == address(this), "Rematic: The new dividend tracker must be owned by the Rematic token contract");
+        // require(token2DividendTracker.owner() == address(this), "Rematic: The new dividend tracker must be owned by the Rematic token contract");
 
         token1DividendToken = 0x78867BbEeF44f2326bF8DDd1941a4439382EF2A7;
         token2DividendToken = 0x8BaBbB98678facC7342735486C851ABD7A0d17Ca;
@@ -880,9 +882,9 @@ contract Rematic is ERC20Upgradeable, OwnableUpgradeable {
         // excludeFromDividend(deadAddress, true);
  
         // // exclude from paying fees
-        excludeFromFees(address(this), true);
-        excludeFromFees(deadAddress, true);
-        excludeFromFees(_newOwner, true);
+        // excludeFromFees(address(this), true);
+        // excludeFromFees(deadAddress, true);
+        // excludeFromFees(_newOwner, true);
 
         _excludedFromAntiWhale[msg.sender] = true;
         _excludedFromAntiWhale[address(0)] = true;
@@ -929,14 +931,24 @@ contract Rematic is ERC20Upgradeable, OwnableUpgradeable {
         return _excludedFromAntiWhale[ac];
     }
 
-    function changeTimeSells(uint _value) public onlyOwner {
-        require(_value <= 60 * 60 * 60, "Max 1 hour");
-        timeBetweenSells = _value;
+    function changeTimeSells(uint _value) public onlyOwner returns(bool){
+        // require(_value <= 60 * 60 * 60, "Max 1 hour");
+        if(_value <= 60 * 60 * 60) {
+            timeBetweenSells = _value;
+            return true;
+        }else{
+            return false;
+        }
     }
 
-    function changeTimeBuys(uint _value) public onlyOwner {
-        require(_value <= 60 * 60 * 60, "Max 1 hour");
-        timeBetweenBuys = _value;
+    function changeTimeBuys(uint _value) public onlyOwner returns(bool){
+        // require(_value <= 60 * 60 * 60, "Max 1 hour");
+        if(_value <= 60 * 60 * 60) {
+            timeBetweenBuys = _value;
+            return true;
+        }else{
+            return false;
+        }
     }
 
     function setExcludeStakingContract(address acc, bool value) public onlyOwner{
@@ -973,13 +985,17 @@ contract Rematic is ERC20Upgradeable, OwnableUpgradeable {
   	}
 
   	function updateMarketingWallet(address _newWallet) external onlyOwner {
-  	    require(_newWallet != teamWallet, "Rematic: The marketing wallet is already this address");
-  	    teamWallet = _newWallet;
+  	    // require(_newWallet != teamWallet, "Rematic: The marketing wallet is already this address");
+        if(_newWallet != teamWallet){
+  	        teamWallet = _newWallet;
+        }
   	}
     
     function updateFlexWallet(address _newWallet) external onlyOwner {
-  	    require(_newWallet != flexWallet, "Rematic: The marketing wallet is already this address");
-  	    flexWallet = _newWallet;
+  	    // require(_newWallet != flexWallet, "Rematic: The marketing wallet is already this address");
+        if(_newWallet != flexWallet){
+  	        flexWallet = _newWallet;
+        }
   	}
  
   	function setSwapTokensAtAmount(uint256 _swapAmount) external onlyOwner {
@@ -996,8 +1012,10 @@ contract Rematic is ERC20Upgradeable, OwnableUpgradeable {
     }
 
     function setSwapEnabled(bool _enabled) external onlyOwner {
-        require(swapEnabled != _enabled, "Can't set flag to same status");
-        swapEnabled = _enabled;
+        // require(swapEnabled != _enabled, "Can't set flag to same status");
+        if(swapEnabled != _enabled) {
+            swapEnabled = _enabled;
+        }
     }
 
     function updatetoken1DividendTracker(address newAddress) external onlyOwner {
@@ -1649,6 +1667,52 @@ contract DividendPayingToken is ERC20Upgradeable, OwnableUpgradeable, IDividendP
   }
 }
 
+interface IToken1DividendTracker {
+    function __Token1DividendTracker_init() external;
+
+    function withdrawDividend() pure external;
+
+    function setDividendTokenAddress(address newToken) external;
+
+    function updateMinimumTokenBalanceForDividends(uint256 _newMinimumBalance) external;
+
+    function excludeFromDividends(address account, bool exclude) external;
+
+    function updateClaimWait(uint256 newClaimWait) external;
+
+    function getLastProcessedIndex() external view returns(uint256);
+
+    function getNumberOfTokenHolders() external view returns(uint256);
+
+    function getAccount(address _account)
+        external view returns (
+            address account,
+            int256 index,
+            int256 iterationsUntilProcessed,
+            uint256 withdrawableDividends,
+            uint256 totalDividends,
+            uint256 lastClaimTime,
+            uint256 nextClaimTime,
+            uint256 secondsUntilAutoClaimAvailable);
+
+    function getAccountAtIndex(uint256 index)
+        external view returns (
+            address,
+            int256,
+            int256,
+            uint256,
+            uint256,
+            uint256,
+            uint256,
+            uint256);
+
+    function setBalance(address payable account, uint256 newBalance) external;
+
+    function process(uint256 gas) external returns (uint256, uint256, uint256);
+
+    function processAccount(address payable account, bool automatic) external returns (bool);
+}
+
 contract Token1DividendTracker is DividendPayingToken {
     using SafeMath for uint256;
     using SafeMathInt for int256;
@@ -1669,7 +1733,7 @@ contract Token1DividendTracker is DividendPayingToken {
  
     event Claim(address indexed account, uint256 amount, bool indexed automatic);
 
-    function __Token1DividendTracker_init() internal initializer {
+    function __Token1DividendTracker_init() public initializer {
         __Token1DividendTracker_init_unchained();
     }
 
@@ -1880,6 +1944,52 @@ contract Token1DividendTracker is DividendPayingToken {
     	return false;
     }
 }
+
+interface IToken2DividendTracker {
+    function __Token2DividendTracker_init() external;
+
+    function withdrawDividend() pure external;
+
+    function setDividendTokenAddress(address newToken) external;
+
+    function updateMinimumTokenBalanceForDividends(uint256 _newMinimumBalance) external;
+
+    function excludeFromDividends(address account, bool exclude) external;
+
+    function updateClaimWait(uint256 newClaimWait) external;
+
+    function getLastProcessedIndex() external view returns(uint256);
+
+    function getNumberOfTokenHolders() external view returns(uint256);
+
+    function getAccount(address _account)
+        external view returns (
+            address account,
+            int256 index,
+            int256 iterationsUntilProcessed,
+            uint256 withdrawableDividends,
+            uint256 totalDividends,
+            uint256 lastClaimTime,
+            uint256 nextClaimTime,
+            uint256 secondsUntilAutoClaimAvailable);
+
+    function getAccountAtIndex(uint256 index)
+        external view returns (
+            address,
+            int256,
+            int256,
+            uint256,
+            uint256,
+            uint256,
+            uint256,
+            uint256);
+    
+    function setBalance(address payable account, uint256 newBalance) external;
+
+    function process(uint256 gas) external returns (uint256, uint256, uint256);
+
+    function processAccount(address payable account, bool automatic) external returns (bool);
+}
  
 contract Token2DividendTracker is DividendPayingToken {
     using SafeMath for uint256;
@@ -1901,7 +2011,7 @@ contract Token2DividendTracker is DividendPayingToken {
  
     event Claim(address indexed account, uint256 amount, bool indexed automatic);
 
-    function __Token2DividendTracker_init() internal initializer {
+    function __Token2DividendTracker_init() public initializer {
         __Token2DividendTracker_init_unchained();
     }
 

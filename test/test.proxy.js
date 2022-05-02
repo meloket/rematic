@@ -8,21 +8,27 @@ let rematic;
 // Start test block
 describe('Rematic (proxy)', function () {
   beforeEach(async function () {
-    // Token1DividendTracker = await ethers.getContractFactory("Token1DividendTracker")
+    Token1DividendTracker = await ethers.getContractFactory("Token1DividendTracker")
 
-    // // Start deployment, returning a promise that resolves to a contract object
-    // token1DividendTracker = await Token1DividendTracker.deploy()
-    // await token1DividendTracker.deployed()
+    token1DividendTracker = await Token1DividendTracker.deploy()
+    await token1DividendTracker.deployed()
+    await token1DividendTracker.__Token1DividendTracker_init();
 
-    // Token2DividendTracker = await ethers.getContractFactory("Token2DividendTracker")
+    Token2DividendTracker = await ethers.getContractFactory("Token2DividendTracker")
 
-    // // Start deployment, returning a promise that resolves to a contract object
-    // token2DividendTracker = await Token2DividendTracker.deploy()
-    // await token2DividendTracker.deployed()
+    token2DividendTracker = await Token2DividendTracker.deploy()
+    await token2DividendTracker.deployed()
+    await token2DividendTracker.__Token2DividendTracker_init();
 
 
     Rematic = await ethers.getContractFactory("Rematic")
-    rematic = await upgrades.deployProxy(Rematic, { initializer: '__Rematic_init' })
+    rematic = await Rematic.deploy()
+    await rematic.deployed()
+
+    await token1DividendTracker.transferOwnership(rematic.address);
+    await token2DividendTracker.transferOwnership(rematic.address);
+
+    rematic.__Rematic_init(token1DividendTracker.address, token2DividendTracker.address);
   });
 
   // Test case
